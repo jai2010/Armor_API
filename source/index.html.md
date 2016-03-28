@@ -79,9 +79,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 ## Authentication
 
 # Account
-## Account Object
-
 An Account represents a company (as compared to a User entity, which represents a person at that company).
+
+## Account Object
 
 Attributes | Type | Description
 -------------- | --------------  | -------------- 
