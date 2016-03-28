@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Armor Escrow Payments API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;cURL&quot;,&quot;ruby&quot;,&quot;PHP&quot;,&quot;Node&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,9 +101,10 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="cURL">cURL</a>
               <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="PHP">PHP</a>
+              <a href="#" data-language-name="Node">Node</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -113,21 +114,21 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='#'>Quick Start Guide</a></li>
+            <li><a href='#'>Release Notes</a></li>
+            <li><a href='#'>Support</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        <h1 id="getting-started">Getting Started</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to Armor Escrow Payments API Documentation.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Armor Payments Escrow as a Service offers the flexibility to support a variety of payment use cases. As a licensed escrow provider through our wholly owned subsidiary, Armor Escrow Inc., Armor Payments takes on the regulatory burden, the money movement complexities, and the dispute management (for relevant order types), allowing our partners to focus on serving their payers and payees. </p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-
-<h1 id="authentication">Authentication</h1>
+<p>See below for the supported use cases and API details.</p>
 
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -159,123 +160,413 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+<div class="separator"></div>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<hr>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h1 id="development">Development</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h2 id="authentication">Authentication</h2>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<h3 id="authentication-keys">Authentication Keys</h3>
 
-<p>This endpoint retrieves all kittens.</p>
+<h2 id="conventions">Conventions</h2>
 
-<h3 id="http-request">HTTP Request</h3>
+<h2 id="webhooks">Webhooks</h2>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<h2 id="environment">Environment</h2>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<h2 id="test-harness">Test Harness</h2>
+
+<h2 id="client-libraries">Client Libraries</h2>
+
+<h2 id="integration-guide">Integration Guide</h2>
+
+<h1 id="authentication">Authentication</h1>
+
+<h2 id="api-key">API Key</h2>
+
+<h2 id="authentication">Authentication</h2>
+
+<h1 id="account">Account</h1>
+
+<h2 id="account-object">Account Object</h2>
+
+<p>An Account represents a company (as compared to a User entity, which represents a person at that company).</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Attributes</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td><strong>account_id</strong></td>
+<td><em>integer</em></td>
+<td>The identifier of this Account company</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td><strong>company</strong></td>
+<td><em>string</em></td>
+<td>The name of the company this Account belongs to address</td>
+</tr>
+<tr>
+<td><strong>address</strong></td>
+<td><em>string</em></td>
+<td>The street address of the company city</td>
+</tr>
+<tr>
+<td><strong>city</strong></td>
+<td><em>string</em></td>
+<td>The city the street address is located in state</td>
+</tr>
+<tr>
+<td><strong>state</strong></td>
+<td><em>string</em></td>
+<td>The state/province of the address postal_code</td>
+</tr>
+<tr>
+<td><strong>postal_code</strong></td>
+<td><em>string</em></td>
+<td>string — The postal code of the address country</td>
+</tr>
+<tr>
+<td><strong>country</strong></td>
+<td><em>string</em></td>
+<td>The country of the address, formatted as an ISO 3166-1 alpha-2 two-letter country code (e.g. &ldquo;us&rdquo;, or &ldquo;uk&rdquo;).</td>
+</tr>
+<tr>
+<td><strong>phone</strong></td>
+<td><em>string</em></td>
+<td>The Account&rsquo;s phone number, formatted with international dialing code and number (e.g. &ldquo;+1 5551234567&rdquo;)</td>
+</tr>
+<tr>
+<td><strong>created</strong></td>
+<td><em>string</em></td>
+<td>The date/time this Account was created, formatted as an ISO 8601 time/date stamp (e.g. &ldquo;2014-07-21T22:26:52-05:00&rdquo;)</td>
+</tr>
+<tr>
+<td><strong>uri</strong></td>
+<td><em>string</em></td>
+<td>The URI used to reference this Account</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h2 id="create-account">Create Account</h2>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>POST https://api.armorpayments.com/accounts/</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight shell"><code>Sample Request
 
-<p>This endpoint retrieves a specific kitten.</p>
+-H <span class="s2">"x-armorpayments-apikey:MyApiKey"</span>
+-H <span class="s2">"x-armorpayments-requesttimestamp:2014-01-01T00:00:00+00:00"</span>
+-H <span class="s2">"x-armorpayments-signature:359d90dfa341caab566cca33de6"</span>
+-d <span class="s2">"foo=bar&amp;biz=baz"</span>
+    https://api.armorpayments.com/accounts/190036
+</code></pre>
+<pre class="highlight shell"><code>Sample Response
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<span class="o">{</span>
+    <span class="s2">"account_id"</span>:<span class="s2">"290465"</span>,
+    <span class="s2">"company"</span>:<span class="s2">"ACME Inc."</span>,
+    <span class="s2">"address"</span>:null,
+    <span class="s2">"city"</span>:null,
+    <span class="s2">"state"</span>:null,
+    <span class="s2">"postal_code"</span>:null,
+    <span class="s2">"country"</span>:null,
+    <span class="s2">"phone"</span>:null,
+    <span class="s2">"created"</span>:<span class="s2">"2014-01-28T17:31:25+00:00"</span>,
+    <span class="s2">"uri"</span>:<span class="s2">"</span><span class="se">\/</span><span class="s2">accounts</span><span class="se">\/</span><span class="s2">290465"</span>
+<span class="o">}</span>
+</code></pre>
 
-<h3 id="http-request">HTTP Request</h3>
+<p>You can create accounts for your users.</p>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<p><strong>Parameters</strong></p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Parameters</th>
+<th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td><strong>company</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The name of the company this Account belongs to address</td>
+</tr>
+<tr>
+<td><strong>address</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The street address of the company city</td>
+</tr>
+<tr>
+<td><strong>city</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The city the street address is located in state</td>
+</tr>
+<tr>
+<td><strong>state</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The state/province of the address postal_code</td>
+</tr>
+<tr>
+<td><strong>postal_code</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The postal code of the address country</td>
+</tr>
+<tr>
+<td><strong>country</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The country of the address, formatted as an ISO 3166-1 alpha-2 two-letter country code (e.g. &ldquo;us&rdquo;, or &ldquo;uk&rdquo;).</td>
+</tr>
+<tr>
+<td><strong>phone</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The Account&rsquo;s phone number, formatted with international dialing code and number (e.g. &ldquo;+1 5551234567&rdquo;)</td>
+</tr>
+<tr>
+<td><strong>tax_id</strong></td>
+<td><em>string</em></td>
+<td><em>optional</em></td>
+<td>The tax ID for the account (US-based accounts only)</td>
 </tr>
 </tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>Returns an Account entity object.</p>
+
+<h2 id="retrieve-account-details">Retrieve Account details</h2>
+<pre class="highlight plaintext"><code>Sample Request
+
+-H "x-armorpayments-apikey:MyApiKey"
+-H "x-armorpayments-requesttimestamp:2014-01-01T00:00:00+00:00"
+-H "x-armorpayments-signature:359d90dfa341caab566cca33de6"
+-d "foo=bar&amp;biz=baz"
+    https://api.armorpayments.com/accounts/190036
+</code></pre>
+<pre class="highlight plaintext"><code>Sample Response
+
+{
+    "account_id":"290465",
+    "company":"ACME Inc.",
+    "address":null,
+    "city":null,
+    "state":null,
+    "postal_code":null,
+    "country":null,
+    "phone":null,
+    "created":"2014-01-28T17:31:25+00:00",
+    "uri":"\/accounts\/290465"
+}
+</code></pre>
+
+<p>Retrieve details about an existing account.</p>
+
+<blockquote>
+<p>GET https://api.armorpayments.com/accounts/{account_id}</p>
+</blockquote>
+
+<p><strong>URI Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>account_id</strong></td>
+<td><em>integer</em></td>
+<td><em>Required</em></td>
+<td>The identifier of this Account company</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>Returns an Account entity object.</p>
+
+<h2 id="update-account-details">Update Account details</h2>
+
+<blockquote>
+<p>POST https://api.armorpayments.com/accounts/{account_id}</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Sample Request
+
+-H "x-armorpayments-apikey:MyApiKey"
+-H "x-armorpayments-requesttimestamp:2014-01-01T00:00:00+00:00"
+-H "x-armorpayments-signature:359d90dfa341caab566cca33de6"
+-d "foo=bar&amp;biz=baz"
+    https://api.armorpayments.com/accounts/190036
+</code></pre>
+<pre class="highlight plaintext"><code>Sample Response
+
+{
+    "account_id":"290465",
+    "company":"ACME Inc.",
+    "address":null,
+    "city":null,
+    "state":null,
+    "postal_code":null,
+    "country":null,
+    "phone":null,
+    "created":"2014-01-28T17:31:25+00:00",
+    "uri":"\/accounts\/290465"
+}
+</code></pre>
+
+<p>Update an existing user account.</p>
+
+<p><strong>URI Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>account_id</strong></td>
+<td><em>integer</em></td>
+<td><em>Required</em></td>
+<td>The identifier of this Account company</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request body parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>company</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The name of the company this Account belongs to address</td>
+</tr>
+<tr>
+<td><strong>address</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The street address of the company city</td>
+</tr>
+<tr>
+<td><strong>city</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The city the street address is located in state</td>
+</tr>
+<tr>
+<td><strong>state</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The state/province of the address postal_code</td>
+</tr>
+<tr>
+<td><strong>postal_code</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The postal code of the address country</td>
+</tr>
+<tr>
+<td><strong>country</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The country of the address, formatted as an ISO 3166-1 alpha-2 two-letter country code (e.g. &ldquo;us&rdquo;, or &ldquo;uk&rdquo;).</td>
+</tr>
+<tr>
+<td><strong>phone</strong></td>
+<td><em>string</em></td>
+<td><em>required</em></td>
+<td>The Account&rsquo;s phone number, formatted with international dialing code and number (e.g. &ldquo;+1 5551234567&rdquo;)</td>
+</tr>
+<tr>
+<td><strong>tax_id</strong></td>
+<td><em>string</em></td>
+<td><em>optional</em></td>
+<td>The tax ID for the account (US-based accounts only)</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>Returns an Account entity object.</p>
+
+<h2 id="user">User</h2>
+
+<h2 id="user-terms">User Terms</h2>
+
+<h2 id="payout">Payout</h2>
+
+<h1 id="partner">Partner</h1>
+
+<h2 id="partner">Partner</h2>
+
+<h2 id="partner-accounts">Partner Accounts</h2>
+
+<h2 id="partner-users">Partner Users</h2>
+
+<h2 id="partner-orders">Partner Orders</h2>
+
+<h2 id="partner-history">Partner History</h2>
+
+<h1 id="escrow-order">Escrow Order</h1>
+
+<h2 id="order">Order</h2>
+
+<h2 id="order-documents">Order Documents</h2>
+
+<h2 id="order-notes">Order Notes</h2>
+
+<h2 id="order-events">Order Events</h2>
+
+<h2 id="order-ledger">Order Ledger</h2>
+
+<h2 id="order-user-actions">Order User Actions</h2>
+
+<h1 id="escrow-payment">Escrow Payment</h1>
+
+<h2 id="payment-instructions">Payment Instructions</h2>
+
+<h1 id="shipment">Shipment</h1>
+
+<h2 id="shipment-carriers">Shipment Carriers</h2>
+
+<h1 id="dispute">Dispute</h1>
+
+<h2 id="dispute">Dispute</h2>
+
+<h2 id="dispute-documents">Dispute Documents</h2>
+
+<h2 id="dispute-notes">Dispute Notes</h2>
+
+<h2 id="offer">Offer</h2>
+
+<h2 id="offer-documents">Offer Documents</h2>
+
+<h2 id="offer-notes">Offer Notes</h2>
 
           <h1 id="errors">Errors</h1>
 
@@ -338,9 +629,10 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="cURL">cURL</a>
                 <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="PHP">PHP</a>
+                <a href="#" data-language-name="Node">Node</a>
           </div>
       </div>
     </div>
