@@ -1,30 +1,33 @@
 ---
-title: API Reference
+title: Armor Escrow Payments API Reference
 
 language_tabs:
-  - shell
+  - cURL
   - ruby
-  - python
-
+  - PHP
+  - Node
+  
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
+  - <a href='#'>Quick Start Guide</a>
+  - <a href='#'>Release Notes</a>
+  - <a href='#'>Support</a>
+  
 includes:
   - errors
 
 search: true
 ---
 
-# Introduction
+# Getting Started
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Armor Escrow Payments API Documentation.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Armor Payments Escrow as a Service offers the flexibility to support a variety of payment use cases. As a licensed escrow provider through our wholly owned subsidiary, Armor Escrow Inc., Armor Payments takes on the regulatory burden, the money movement complexities, and the dispute management (for relevant order types), allowing our partners to focus on serving their payers and payees. 
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+See below for the supported use cases and API details.
 
-# Authentication
+
 
 > To authorize, use this code:
 
@@ -58,111 +61,234 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+<div class="separator"></div>
+---
 
-## Get All Kittens
+# Development
+## Authentication
+### Authentication Keys
+## Conventions
+## Webhooks
+## Environment
+## Test Harness
+## Client Libraries
+## Integration Guide
 
-```ruby
-require 'kittn'
+# Authentication
+## API Key
+## Authentication
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+# Account
+## Account Object
 
-```python
-import kittn
+An Account represents a company (as compared to a User entity, which represents a person at that company).
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+Attributes | Type | Description
+-------------- | --------------  | -------------- 
+**account_id**  | *integer* | The identifier of this Account company
+**company** | *string* | The name of the company this Account belongs to address
+**address** | *string* | The street address of the company city
+**city** | *string* | The city the street address is located in state
+**state** | *string* | The state/province of the address postal_code
+**postal_code** | *string* | string — The postal code of the address country
+**country** | *string* | The country of the address, formatted as an ISO 3166-1 alpha-2 two-letter country code (e.g. "us", or "uk").
+**phone** | *string* | The Account's phone number, formatted with international dialing code and number (e.g. "+1 5551234567") 
+**created** | *string* | The date/time this Account was created, formatted as an ISO 8601 time/date stamp (e.g. "2014-07-21T22:26:52-05:00") 
+**uri** | *string* | The URI used to reference this Account
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Create Account
+>  POST https://api.armorpayments.com/accounts/
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+Sample Request
+
+-H "x-armorpayments-apikey:MyApiKey"
+-H "x-armorpayments-requesttimestamp:2014-01-01T00:00:00+00:00"
+-H "x-armorpayments-signature:359d90dfa341caab566cca33de6"
+-d "foo=bar&biz=baz"
+	https://api.armorpayments.com/accounts/190036
 ```
+	
+```shell
+Sample Response
 
-> The above command returns JSON structured like this:
-
-```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+	"account_id":"290465",
+	"company":"ACME Inc.",
+	"address":null,
+	"city":null,
+	"state":null,
+	"postal_code":null,
+	"country":null,
+	"phone":null,
+	"created":"2014-01-28T17:31:25+00:00",
+	"uri":"\/accounts\/290465"
 }
 ```
 
-This endpoint retrieves a specific kitten.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+You can create accounts for your users.
 
-### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+**Parameters**
 
-### URL Parameters
+Parameters | Type | Required | Description
+-------------- | --------------  | -------------- | -------------- 
+**company** | *string* | *required* | The name of the company this Account belongs to address
+**address** | *string* | *required* | The street address of the company city
+**city** | *string* | *required* | The city the street address is located in state
+**state** | *string* | *required* | The state/province of the address postal_code
+**postal_code** | *string* | *required* | The postal code of the address country
+**country** | *string* | *required* | The country of the address, formatted as an ISO 3166-1 alpha-2 two-letter country code (e.g. "us", or "uk").
+**phone** | *string* | *required* | The Account's phone number, formatted with international dialing code and number (e.g. "+1 5551234567") 
+**tax_id** | *string* | *optional* | The tax ID for the account (US-based accounts only)
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+
+**Returns**
+
+Returns an Account entity object.
+
+## Retrieve Account details
+```curl
+Sample Request
+
+-H "x-armorpayments-apikey:MyApiKey"
+-H "x-armorpayments-requesttimestamp:2014-01-01T00:00:00+00:00"
+-H "x-armorpayments-signature:359d90dfa341caab566cca33de6"
+-d "foo=bar&biz=baz"
+	https://api.armorpayments.com/accounts/190036
+```
+	
+```curl
+Sample Response
+
+{
+	"account_id":"290465",
+	"company":"ACME Inc.",
+	"address":null,
+	"city":null,
+	"state":null,
+	"postal_code":null,
+	"country":null,
+	"phone":null,
+	"created":"2014-01-28T17:31:25+00:00",
+	"uri":"\/accounts\/290465"
+}
+```
+
+Retrieve details about an existing account.
+
+>  GET https://api.armorpayments.com/accounts/{account_id}
+
+
+**URI Parameters**
+
+Parameters | Type | Required | Description
+-------------- | --------------  | -------------- | -------------- 
+**account_id**  | *integer* | *Required* | The identifier of this Account company
+
+
+**Returns**
+
+Returns an Account entity object.
+
+
+
+
+## Update Account details
+>  POST https://api.armorpayments.com/accounts/{account_id}
+
+```curl
+Sample Request
+
+-H "x-armorpayments-apikey:MyApiKey"
+-H "x-armorpayments-requesttimestamp:2014-01-01T00:00:00+00:00"
+-H "x-armorpayments-signature:359d90dfa341caab566cca33de6"
+-d "foo=bar&biz=baz"
+	https://api.armorpayments.com/accounts/190036
+```
+	
+```curl
+Sample Response
+
+{
+	"account_id":"290465",
+	"company":"ACME Inc.",
+	"address":null,
+	"city":null,
+	"state":null,
+	"postal_code":null,
+	"country":null,
+	"phone":null,
+	"created":"2014-01-28T17:31:25+00:00",
+	"uri":"\/accounts\/290465"
+}
+```
+
+Update an existing user account.
+
+
+**URI Parameters**
+
+Parameters | Type | Required | Description
+-------------- | --------------  | -------------- | -------------- 
+**account_id**  | *integer* | *Required* | The identifier of this Account company
+
+
+**Request body parameters**
+
+Parameters | Type | Required | Description
+-------------- | --------------  | -------------- | -------------- 
+**company** | *string* | *required* | The name of the company this Account belongs to address
+**address** | *string* | *required* | The street address of the company city
+**city** | *string* | *required* | The city the street address is located in state
+**state** | *string* | *required* | The state/province of the address postal_code
+**postal_code** | *string* | *required* | The postal code of the address country
+**country** | *string* | *required* | The country of the address, formatted as an ISO 3166-1 alpha-2 two-letter country code (e.g. "us", or "uk").
+**phone** | *string* | *required* | The Account's phone number, formatted with international dialing code and number (e.g. "+1 5551234567") 
+**tax_id** | *string* | *optional* | The tax ID for the account (US-based accounts only)
+
+
+**Returns**
+
+Returns an Account entity object.
+
+
+
+    
+## User
+## User Terms
+## Payout
+
+# Partner
+## Partner
+## Partner Accounts
+## Partner Users
+## Partner Orders
+## Partner History
+
+# Escrow Order
+## Order
+## Order Documents
+## Order Notes
+## Order Events
+## Order Ledger
+## Order User Actions
+
+# Escrow Payment
+## Payment Instructions
+
+# Shipment
+## Shipment Carriers
+
+# Dispute
+## Dispute
+## Dispute Documents
+## Dispute Notes
+## Offer
+## Offer Documents
+## Offer Notes
+
+
+
 
